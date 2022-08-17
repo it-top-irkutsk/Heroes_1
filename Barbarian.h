@@ -2,29 +2,14 @@
 
 #include <string>
 
+#include "Hero.h"
+
 using namespace std;
 
-class Barbarian {
-private:
-    string _name;
-    int _health;
-    int _damage;
-
+class Barbarian : public Hero{
 public:
-    Barbarian(const string& name) : _name(name) {
+    Barbarian(const string& name) : Hero(name) {
         _health = 100;
         _damage = 20;
-    }
-
-    const string& getName() const {
-        return _name;
-    }
-
-    int getHealth() const {
-        return _health;
-    }
-
-    int getDamage() const {
-        return _damage;
     }
 };

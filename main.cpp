@@ -18,13 +18,27 @@ int main() {
     player = new Mage(playerName);
     enemy = new Barbarian(enemyName);
 
+    cout << "=== START ===" << endl;
     ShowMage(player);
     ShowBarbarian(enemy);
 
-    // Attack
+    do {
+        cout << "### ATTACK ###" << endl;
+        player->Attack(enemy);
+        enemy->Attack(player);
 
-    ShowMage(player);
-    ShowBarbarian(enemy);
+        ShowMage(player);
+        ShowBarbarian(enemy);
+    } while (!player->isDead() && !enemy->isDead());
+
+    if (player->isDead()) {
+        cout << enemy->getName() << " is WIN !!!" << endl;
+    } else if (enemy->isDead()) {
+        cout << player->getName() << " is WIN !!!" << endl;
+    }
+
+    delete player;
+    delete enemy;
 
     return 0;
 }
