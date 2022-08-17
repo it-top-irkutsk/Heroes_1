@@ -9,26 +9,53 @@
 using namespace std;
 
 int main() {
-    Mage* player;
-    Barbarian* enemy;
+    Hero* player;
+    Hero* enemy;
 
-    string playerName = "Mage";
+    string playerName;
     string enemyName = "Enemy";
 
-    player = new Mage(playerName);
-    enemy = new Barbarian(enemyName);
-
     cout << "=== START ===" << endl;
-    ShowMage(player);
-    ShowBarbarian(enemy);
+    cout << endl;
+
+    cout << "Select hero:" << endl;
+    cout << "1. Mage" << endl;
+    cout << "2. Barbarian" << endl;
+    cout << "0. Exit" << endl;
+    char select;
+    cout << "Enter: ";
+    cin >> select;
+
+    cout << "Enter name hero: ";
+    cin >> playerName;
+
+    switch (select) {
+        case '1':
+            player = new Mage(playerName);
+            enemy = new Barbarian(enemyName);
+            break;
+        case '2':
+            player = new Barbarian(playerName);
+            enemy = new Mage(enemyName);
+            break;
+        case '0':
+            cout << "Exit ...";
+            return 0;
+        default:
+            cout << "Bad enter!";
+            return 0;
+    }
+
+    ShowHero(player);
+    ShowHero(enemy);
 
     do {
         cout << "### ATTACK ###" << endl;
         player->Attack(enemy);
         enemy->Attack(player);
 
-        ShowMage(player);
-        ShowBarbarian(enemy);
+        ShowHero(player);
+        ShowHero(enemy);
     } while (!player->isDead() && !enemy->isDead());
 
     if (player->isDead()) {
