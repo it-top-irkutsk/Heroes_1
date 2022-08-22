@@ -3,4 +3,4 @@ project(Heroes)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(Heroes main.cpp Mage.h Barbarian.h Utilites.h Hero.h)
+add_executable(Heroes main.cpp Mage.h Barbarian.h Utilites.h Hero.h HeroCreator.h)

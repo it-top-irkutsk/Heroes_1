@@ -5,12 +5,13 @@
 #include "Barbarian.h"
 
 #include "Utilites.h"
+#include "HeroCreator.h"
 
 using namespace std;
 
 int main() {
-    Hero* player;
-    Hero* enemy;
+    Hero* player = nullptr;
+    Hero* enemy = nullptr;
 
     string playerName;
     string enemyName = "Enemy";
@@ -18,10 +19,7 @@ int main() {
     cout << "=== START ===" << endl;
     cout << endl;
 
-    cout << "Select hero:" << endl;
-    cout << "1. Mage" << endl;
-    cout << "2. Barbarian" << endl;
-    cout << "0. Exit" << endl;
+    ShowMenu();
     char select;
     cout << "Enter: ";
     cin >> select;
@@ -29,22 +27,9 @@ int main() {
     cout << "Enter name hero: ";
     cin >> playerName;
 
-    switch (select) {
-        case '1':
-            player = new Mage(playerName);
-            enemy = new Barbarian(enemyName);
-            break;
-        case '2':
-            player = new Barbarian(playerName);
-            enemy = new Mage(enemyName);
-            break;
-        case '0':
-            cout << "Exit ...";
-            return 0;
-        default:
-            cout << "Bad enter!";
-            return 0;
-    }
+    CreateHeroes(&player, &enemy, select, playerName, enemyName);
+
+    if (player == nullptr || enemy == nullptr) return 1;
 
     ShowHero(player);
     ShowHero(enemy);
